@@ -1,0 +1,15 @@
+---
+const { post } = Astro.props;
+const fecha = post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<a href={`/journal/${post.id}`} class="group flex flex-col gap-1 border-b border-line py-5 sm:flex-row sm:items-baseline sm:gap-6">
+  <time class="w-28 shrink-0 font-mono text-xs text-muted">{fecha}</time>
+  <div>
+    <h3 class="font-medium group-hover:text-accent">{post.data.title}</h3>
+    <p class="mt-1 text-sm text-muted">{post.data.description}</p>
+    <ul class="mt-2 flex gap-2">
+      {post.data.tags.map((t) => <li class="font-mono text-xs text-accent">#{t}</li>)}
+    </ul>
+  </div>
+</a>

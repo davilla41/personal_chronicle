@@ -1,0 +1,55 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+const { title = 'David Villanueva', description = 'Senior Data Engineer: portfolio and journal.' } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/journal', label: 'Journal' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-mono" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-10 border-b border-line bg-bg/80 backdrop-blur">
+      <nav class="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-mono text-sm font-medium">davidvillanueva<span class="text-accent">.</span></a>
+        <ul class="flex gap-6 text-sm">
+          {links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class:list={['transition-colors hover:text-fg', (l.href === '/' ? path === '/' : path.startsWith(l.href)) ? 'text-fg' : 'text-muted']}
+              >{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main class="mx-auto w-full max-w-3xl flex-1 px-6 py-16">
+      <slot />
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-3xl items-center justify-between px-6 py-8 text-sm text-muted">
+        <span>© {new Date().getFullYear()} David Villanueva</span>
+        <div class="flex gap-5">
+          <a class="hover:text-fg" href="https://github.com/davilla41">GitHub</a>
+          <a class="hover:text-fg" href="https://www.linkedin.com/in/david-villanueva41/">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
