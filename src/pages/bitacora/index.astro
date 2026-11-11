@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+
+const posts = (await getCollection('bitacora', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date - a.data.date);
+---
+
+<BaseLayout title="Bitácora · David Villanueva">
+  <h1 class="mb-8 text-3xl font-bold tracking-tight">Bitácora</h1>
+  {posts.map((p) => <PostRow post={p} />)}
+</BaseLayout>

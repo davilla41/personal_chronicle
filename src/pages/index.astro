@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostRow.astro';
+import { proyectos } from '../data/proyectos.js';
+
+const posts = (await getCollection('bitacora', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date - a.data.date)
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="pb-20">
+    <p class="font-mono text-sm text-accent">Hola, soy</p>
+    <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-6xl">David Villanueva</h1>
+    <p class="mt-2 text-xl text-muted sm:text-2xl">Senior Data Engineer</p>
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+      Diseño pipelines de datos confiables y los <span class="text-fg">automatizo</span> de punta a punta:
+      modelado con <span class="text-fg">dbt</span> sobre <span class="text-fg">Snowflake</span>,
+      procesamiento con <span class="text-fg">Python</span> y PySpark, y visualización en Tableau y Power BI.
+    </p>
+    <div class="mt-8 flex gap-3">
+      <a href="#proyectos" class="rounded-lg bg-fg px-4 py-2 text-sm font-medium text-bg hover:bg-fg/90">Ver proyectos</a>
+      <a href="/bitacora" class="rounded-lg border border-line px-4 py-2 text-sm hover:border-accent">Leer la bitácora</a>
+    </div>
+  </section>
+
+  <section id="proyectos" class="pb-20">
+    <h2 class="mb-6 text-sm font-mono uppercase tracking-widest text-muted">Proyectos destacados</h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {proyectos.map((p) => <ProjectCard {...p} />)}
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-2 flex items-baseline justify-between">
+      <h2 class="text-sm font-mono uppercase tracking-widest text-muted">Últimas entradas</h2>
+      <a href="/bitacora" class="text-sm text-muted hover:text-accent">Ver todas →</a>
+    </div>
+    {posts.map((p) => <PostRow post={p} />)}
+  </section>
+</BaseLayout>
