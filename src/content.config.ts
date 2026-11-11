@@ -2,8 +2,8 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const bitacora = defineCollection({
-  loader: glob({ base: './src/content/bitacora', pattern: '**/*.{md,mdx}' }),
+const journal = defineCollection({
+  loader: glob({ base: './src/content/journal', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -13,4 +13,4 @@ const bitacora = defineCollection({
   }),
 });
 
-export const collections = { bitacora };
+export const collections = { journal };

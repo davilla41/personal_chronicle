@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   // TODO: cambia por tu dominio real
-  site: 'https://example.com',
+  site: 'http://davilla.life',
   integrations: [mdx(), sitemap()],
   vite: { plugins: [tailwindcss()] },
   fonts: [

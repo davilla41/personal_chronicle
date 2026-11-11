@@ -2,16 +2,16 @@
 import { Font } from 'astro:assets';
 import '../styles/global.css';
 
-const { title = 'David Villanueva', description = 'Senior Data Engineer: portafolio y bitácora.' } = Astro.props;
+const { title = 'David Villanueva', description = 'Senior Data Engineer: portfolio and journal.' } = Astro.props;
 const path = Astro.url.pathname;
 const links = [
-  { href: '/', label: 'Inicio' },
-  { href: '/bitacora', label: 'Bitácora' },
+  { href: '/', label: 'Home' },
+  { href: '/journal', label: 'Journal' },
 ];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,7 +47,7 @@ const links = [
         <span>© {new Date().getFullYear()} David Villanueva</span>
         <div class="flex gap-5">
           <a class="hover:text-fg" href="https://github.com/davilla41">GitHub</a>
-          <a class="hover:text-fg" href="https://www.linkedin.com/">LinkedIn</a>
+          <a class="hover:text-fg" href="https://www.linkedin.com/in/david-villanueva41/">LinkedIn</a>
         </div>
       </div>
     </footer>
