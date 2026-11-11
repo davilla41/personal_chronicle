@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Avatar from '../../components/Avatar.astro';
 import PostRow from '../../components/PostRow.astro';
 
 const posts = (await getCollection('journal', (p) => !p.data.draft))
@@ -8,6 +9,9 @@ const posts = (await getCollection('journal', (p) => !p.data.draft))
 ---
 
 <BaseLayout title="Journal · David Villanueva">
-  <h1 class="mb-8 text-3xl font-bold tracking-tight">Journal</h1>
+  <div class="mb-8 flex items-center justify-between gap-6">
+    <h1 class="text-3xl font-bold tracking-tight">Journal</h1>
+    <Avatar class="size-16 sm:size-24" />
+  </div>
   {posts.map((p) => <PostRow post={p} />)}
 </BaseLayout>
