@@ -1,0 +1,22 @@
+---
+// Inline SVG: inherits text color (currentColor) and scales with Tailwind size classes.
+// Usage: <Logo class="size-5 text-accent" />
+const { class: cls = 'size-6' } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  class={cls}
+>
+  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+  <path d="M8 13v-3" />
+  <path d="M12 13V7" />
+  <path d="M16 13v-5" />
+</svg>

@@ -1,5 +1,6 @@
 ---
 import { Font } from 'astro:assets';
+import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 
 const { title = 'David Villanueva', description = 'Senior Data Engineer: portfolio and journal.' } = Astro.props;
@@ -15,7 +16,8 @@ const links = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <Font cssVariable="--font-inter" preload />
@@ -24,7 +26,10 @@ const links = [
   <body class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-10 border-b border-line bg-bg/80 backdrop-blur">
       <nav class="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-        <a href="/" class="font-mono text-sm font-medium">davidvillanueva<span class="text-accent">.</span></a>
+        <a href="/" class="flex items-center gap-2 font-mono text-sm font-medium">
+          <Logo class="size-5 text-accent" />
+          davidvillanueva<span class="text-accent">.</span>
+        </a>
         <ul class="flex gap-6 text-sm">
           {links.map((l) => (
             <li>
